@@ -1,0 +1,32 @@
+<header>
+    <nav class="navbar ">
+        <a class="navbar-brand" href="#">Nom du site</a>
+        <ul class="navbar">
+            <li class="nav-item active">
+                <a class="nav-link" href="../">Accueil </a>
+            </li>
+            {% if app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="../logout">Déconnexion </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../calendrier">Mon calendrier </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Mon profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Mon panier</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="../inscription">Inscription </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../login">Connexion </a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</header>
