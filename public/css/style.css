@@ -1,8 +1,8 @@
 body {
     background-image: url("../img/test.png");
     background-attachment: fixed;
-    padding: 150px;
     border-radius: 10px;
+    padding: 150px;
 }
 
 body:before, body:after {
@@ -24,8 +24,14 @@ body:after {
 .content{
     background-color: rgba(255, 221, 173, 0.7);
     box-shadow: 8px 8px 8px 5px #222222;
-
+    overflow: scroll;
+    border-radius: 10px;
 }
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+
 .date, .menu{
     border: black solid 2px;
 }

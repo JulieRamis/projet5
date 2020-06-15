@@ -28,8 +28,9 @@ class BookingController extends AbstractController
      */
     public function index(BookingRepository $bookingRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('booking/index.html.twig', [
-            'bookings' => $bookingRepository->findAll(),
+            'bookings' => $bookingRepository->findByUser($user),
         ]);
     }
 
@@ -39,6 +40,8 @@ class BookingController extends AbstractController
     public function new(Request $request): Response
     {
         $booking = new Booking();
+        $user = $this->getUser();
+        $booking->setUser($user);
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
