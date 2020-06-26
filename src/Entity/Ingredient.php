@@ -24,19 +24,16 @@ class Ingredient
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
-     */
-    private $quantity;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Booking::class, inversedBy="ingredients")
+     * @ORM\OneToMany(targetEntity=IngredientMenu::class, mappedBy="ingredient")
      */
-    private $booking;
+    private $ingredientMenus;
 
     public function __construct()
     {
         $this->booking = new ArrayCollection();
+        $this->ingredientMenus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,41 +53,41 @@ class Ingredient
         return $this;
     }
 
-    public function getQuantity(): ?string
-    {
-        return $this->quantity;
-    }
 
-    public function setQuantity(?string $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
 
     /**
-     * @return Collection|Booking[]
+     * @return Collection|IngredientMenu[]
      */
-    public function getBooking(): Collection
+    public function getIngredientMenus(): Collection
     {
-        return $this->booking;
+        return $this->ingredientMenus;
     }
 
-    public function addBooking(Booking $booking): self
+    public function addIngredientMenu(IngredientMenu $ingredientMenu): self
     {
-        if (!$this->booking->contains($booking)) {
-            $this->booking[] = $booking;
+        if (!$this->ingredientMenus->contains($ingredientMenu)) {
+            $this->ingredientMenus[] = $ingredientMenu;
+            $ingredientMenu->setIngredient($this);
         }
 
         return $this;
     }
 
-    public function removeBooking(Booking $booking): self
+    public function removeIngredientMenu(IngredientMenu $ingredientMenu): self
     {
-        if ($this->booking->contains($booking)) {
-            $this->booking->removeElement($booking);
+        if ($this->ingredientMenus->contains($ingredientMenu)) {
+            $this->ingredientMenus->removeElement($ingredientMenu);
+            // set the owning side to null (unless already changed)
+            if ($ingredientMenu->getIngredient() === $this) {
+                $ingredientMenu->setIngredient(null);
+            }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

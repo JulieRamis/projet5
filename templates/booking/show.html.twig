@@ -8,21 +8,17 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
-            </tr>
-            <tr>
-                <th>BeginAt</th>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndAt</th>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date</th>
+                <td>{{ booking.beginAt ? booking.beginAt|date('d-m') : '' }}</td>
             </tr>
             <tr>
                 <th>Title</th>
                 <td>{{ booking.title }}</td>
             </tr>
+        <tr>
+            <th>Ingrédients</th>
+            <td><p>tegd</p></td>
+        </tr>
         </tbody>
     </table>
 

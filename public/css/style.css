@@ -12,7 +12,8 @@ body:before, body:after {
     background: inherit;
     left: 0;
     right: 0;
-    height: 150px; }
+    height: 150px;
+}
 
 body:before {
     top: 0;
@@ -21,80 +22,110 @@ body:before {
 body:after {
     bottom: 0;
 }
-.content{
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    body:before, body:after {
+        content: normal;
+    }
+}
+
+
+.content {
     background-color: rgba(255, 221, 173, 0.7);
-    box-shadow: 8px 8px 8px 5px #222222;
+    box-shadow: 0px 0px 8px 5px #222222;
     overflow: scroll;
     border-radius: 10px;
 }
+
 .content::-webkit-scrollbar {
     display: none;
 }
 
 
-.date, .menu{
+.date, .menu {
     border: black solid 2px;
 }
 
-table{
+table {
     border-collapse: collapse;
 }
-.menu{
+
+.menu {
     width: 200px;
     height: 200px;
     text-align: center;
     color: white;
 }
-.menu p{
+
+.menu p {
     text-align: center;
     background-color: rgba(0, 0, 0, .4);
     color: white;
 }
-img{
+
+ul {
+    width: 100%;
+    margin: 20px;
+}
+
+img {
     position: relative;
 }
-.carousel-caption p{
-    background-color:  rgba(0, 0, 0, .4);
+
+.carousel-caption p {
+    background-color: rgba(0, 0, 0, .4);
     border-radius: 5px;
     padding: 10px;
 }
-.carousel-inner{
-    border: 2px solid black;
-}
-.navbar{
+
+.navbar {
     display: flex;
     list-style: none;
     color: black;
     background-color: #FE9806;
 }
-.navbar a{
+
+.navbar a {
     color: black;
 }
-.buttons-zone{
+
+.buttons-zone {
     text-align: center;
-    margin-top: 100px;
+    margin: 100px;
 }
-th{
+
+th {
     background-color: #01AAAD;
 }
-.zone-calendar{
+
+.zone-calendar {
     display: flex;
     justify-content: center;
 }
-.date{
-     background-color: #5E8B8D;
+
+.date {
+    background-color: #5E8B8D;
 }
-#second-week, #third-week, #fourth-week{
+
+#second-week, #third-week, #fourth-week {
     visibility: hidden;
 }
-#calendar{
+
+#calendar {
     margin-top: 20px;
     width: 80%;
 }
-.carousel-control-next-icon, .carousel-control-prev-icon{
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
     filter: invert(100%);
 }
-.description{
+
+.description {
     text-align: center;
     margin-top: 100px;
 }
+

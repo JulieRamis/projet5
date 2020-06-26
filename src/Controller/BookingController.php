@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Ingredient;
+use App\Entity\IngredientMenu;
 use App\Form\BookingType;
+use App\Form\IngredientMenuType;
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,11 +44,14 @@ class BookingController extends AbstractController
     {
         $booking = new Booking();
         $user = $this->getUser();
-        $booking->setUser($user);
+
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $booking->setUser($user);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($booking);
             $entityManager->flush();
@@ -55,7 +61,7 @@ class BookingController extends AbstractController
 
         return $this->render('booking/new.html.twig', [
             'booking' => $booking,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -83,9 +89,24 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('booking_index');
         }
 
+        $ingredient=new IngredientMenu();
+
+        $form2= $this->createForm(IngredientMenuType::class, $ingredient);
+        $form2->handleRequest($request);
+
+        if ($form2->isSubmitted() && $form2->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $ingredient->setMenu($booking);
+            $entityManager->persist($ingredient);
+            $entityManager->flush();
+        }
+
+
+
         return $this->render('booking/edit.html.twig', [
             'booking' => $booking,
             'form' => $form->createView(),
+            'form2' => $form2->createView(),
         ]);
     }
 

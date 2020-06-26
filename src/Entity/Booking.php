@@ -41,13 +41,13 @@ class Booking
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ingredient::class, mappedBy="booking")
+     * @ORM\OneToMany(targetEntity=IngredientMenu::class, mappedBy="menu")
      */
-    private $ingredients;
+    private $ingredientMenus;
 
     public function __construct()
     {
-        $this->ingredients = new ArrayCollection();
+        $this->ingredientMenus = new ArrayCollection();
     }
 
 
@@ -105,31 +105,44 @@ class Booking
     }
 
     /**
-     * @return Collection|Ingredient[]
+     * @return Collection|IngredientMenu[]
      */
-    public function getIngredients(): Collection
+    public function getIngredientMenus(): Collection
     {
-        return $this->ingredients;
+        return $this->ingredientMenus;
     }
 
-    public function addIngredient(Ingredient $ingredient): self
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString(){
+        return (string) $this->ingredientMenusname;
+    }
+
+
+    public function addIngredientMenu(IngredientMenu $ingredientMenu): self
     {
-        if (!$this->ingredients->contains($ingredient)) {
-            $this->ingredients[] = $ingredient;
-            $ingredient->addBooking($this);
+        if (!$this->ingredientMenus->contains($ingredientMenu)) {
+            $this->ingredientMenus[] = $ingredientMenu;
+            $ingredientMenu->setMenu($this);
         }
 
         return $this;
     }
 
-    public function removeIngredient(Ingredient $ingredient): self
+    public function removeIngredientMenu(IngredientMenu $ingredientMenu): self
     {
-        if ($this->ingredients->contains($ingredient)) {
-            $this->ingredients->removeElement($ingredient);
-            $ingredient->removeBooking($this);
+        if ($this->ingredientMenus->contains($ingredientMenu)) {
+            $this->ingredientMenus->removeElement($ingredientMenu);
+            // set the owning side to null (unless already changed)
+            if ($ingredientMenu->getMenu() === $this) {
+                $ingredientMenu->setMenu(null);
+            }
         }
 
         return $this;
     }
+
 
 }

@@ -6,6 +6,33 @@
     <h1>Edit Booking</h1>
 
     {{ include('booking/_form.html.twig', {'button_label': 'Update'}) }}
+    <hr/>
+    <h2>Liste des ingrédients</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantité</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ingredient in booking.ingredientMenus %}
+            <tr>
+                <td>{{ ingredient.ingredient.name }}</td>
+                <td>{{ ingredient.quantity }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ form_start(form2) }}
+    {{ form_widget(form2) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form2) }}
+
 
     <a href="{{ path('booking_index') }}">back to list</a>
 
