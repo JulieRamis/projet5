@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Form\EditPassType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,4 +64,16 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * @Route("/profil", name="profile")
+     */
+    public function profile()
+    {
+        $user = $this->getUser();
+        return $this->render('profile.html.twig', [
+            'user' => $user
+        ]);
+    }
+
 }

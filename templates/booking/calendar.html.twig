@@ -2,7 +2,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('booking_new') }}">Create new booking</a>
+
+    <a href="{{ path('booking_new') }}">
+        <button type="submit" class="btn btn-outline-info col-4 ok-btn">Ajouter un nouveau plat </button></a>
+
 
     <div id="calendar-holder"></div>
 {% endblock %}
@@ -20,9 +23,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
 
     <script type="text/javascript">
+
         document.addEventListener('DOMContentLoaded', () => {
             let calendarEl = document.getElementById('calendar-holder');
-
             let calendar = new FullCalendar.Calendar(calendarEl, {
                 defaultView: 'dayGridMonth',
                 editable: true,
@@ -38,12 +41,21 @@
                         },
                     },
                 ],
+                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
+                locale: 'fr', // https://fullcalendar.io/docs/plugin-index
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                    right: 'dayGridMonth,timeGridWeek,list',
                 },
-                plugins: ['interaction', 'dayGrid', 'timeGrid'], // https://fullcalendar.io/docs/plugin-index
+                buttonText: {
+                    today: 'aujourd\'hui',
+                    month: 'mois',
+                    week: 'semaine',
+                    listWeek: 'liste',
+
+                },
+
                 timeZone: 'UTC',
             });
             calendar.render();

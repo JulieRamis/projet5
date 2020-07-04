@@ -8,19 +8,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>Title</th>
-                <th>actions</th>
+                <th>N°</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Plat</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for booking in bookings %}
             <tr>
                 <td>{{ booking.id }}</td>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d') : '' }}</td>
+                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d') : '' }}</td>
                 <td>{{ booking.title }}</td>
                 <td>
                     <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>

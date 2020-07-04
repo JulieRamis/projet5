@@ -55,6 +55,11 @@ class User implements UserInterface
      */
     private $bookings;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -179,5 +184,12 @@ class User implements UserInterface
     public function getBooking(): Collection
     {
         return $this->Booking;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }

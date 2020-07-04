@@ -23,15 +23,6 @@ body:after {
     bottom: 0;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    body:before, body:after {
-        content: normal;
-    }
-}
 
 
 .content {
@@ -92,12 +83,39 @@ img {
 .navbar a {
     color: black;
 }
-
+.nav-link{
+    color: black;
+}
 .buttons-zone {
-    text-align: center;
+    display: flex;
+    align-items: center;
+}
+#home-btn{
     margin: 100px;
 }
+input{
+    border-radius: 5px;
+}
+label{
+    margin: 5px;
+}
+.form-info{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
+}
+form div{
+    display: flex;
+    flex-direction: column;
+}
+.ok-btn{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
 th {
     background-color: #01AAAD;
 }
@@ -128,4 +146,18 @@ th {
     text-align: center;
     margin-top: 100px;
 }
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
 
+    body:before, body:after {
+        content: normal;
+    }
+    .description{
+        margin-top: 10px;
+    }
+    #home-btn{
+        margin: 20px;
+    }
+}

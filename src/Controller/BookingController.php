@@ -42,9 +42,9 @@ class BookingController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
         $booking = new Booking();
         $user = $this->getUser();
-
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
