@@ -23,8 +23,6 @@ body:after {
     bottom: 0;
 }
 
-
-
 .content {
     background-color: rgba(255, 221, 173, 0.7);
     box-shadow: 0px 0px 8px 5px #222222;
@@ -35,7 +33,6 @@ body:after {
 .content::-webkit-scrollbar {
     display: none;
 }
-
 
 .date, .menu {
     border: black solid 2px;
@@ -74,6 +71,7 @@ img {
 }
 
 .navbar {
+    z-index: 1;
     display: flex;
     list-style: none;
     color: black;
@@ -145,6 +143,12 @@ th {
 .description {
     text-align: center;
     margin-top: 100px;
+}
+.fc td {
+    background-color: rgba(254, 152, 6, 0.55);
+}
+.fc-time{
+    display : none;
 }
 @media screen and (max-width: 768px) {
     body {

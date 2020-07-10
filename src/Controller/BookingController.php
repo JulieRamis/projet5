@@ -8,6 +8,7 @@ use App\Entity\IngredientMenu;
 use App\Form\BookingType;
 use App\Form\IngredientMenuType;
 use App\Repository\BookingRepository;
+use App\Repository\IngredientMenuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,9 +33,44 @@ class BookingController extends AbstractController
     public function index(BookingRepository $bookingRepository): Response
     {
         $user = $this->getUser();
+        $user_menus = $this->getDoctrine()->getRepository(Booking::class)->findBy(['user' => $user]);
+        $ingredientsMenu = [];
+
+
+        foreach ($user_menus as $user_menu) {
+            $menuIngredients = $user_menu->getIngredientMenus();
+            foreach ($menuIngredients as $menuIngredient) {
+                $ingredientsMenu[] = $menuIngredient;
+            }
+        }
+       // dd($ingredientsMenu);
         return $this->render('booking/index.html.twig', [
             'bookings' => $bookingRepository->findByUser($user),
+            'ingredientMenu' => $ingredientsMenu
         ]);
+    }
+
+    /**
+     * @Route("/list", name="shopping_list")
+     */
+    public function shoppingList(): Response
+    {
+        $user = $this->getUser();
+          $user_menus = $this->getDoctrine()->getRepository(Booking::class)->findBy(['user' => $user]);
+          $ingredientsMenu = [];
+
+
+          foreach ($user_menus as $user_menu) {
+              $menuIngredients = $user_menu->getIngredientMenus();
+              foreach ($menuIngredients as $menuIngredient) {
+                  $ingredientsMenu[] = $menuIngredient;
+              }
+          }
+        // dd($ingredientsMenu);
+        return $this->render('booking/list.html.twig', [
+                'ingredientMenu' => $ingredientsMenu
+            ]
+        );
     }
 
     /**
@@ -70,8 +106,10 @@ class BookingController extends AbstractController
      */
     public function show(Booking $booking): Response
     {
+
+
         return $this->render('booking/show.html.twig', [
-            'booking' => $booking,
+            'booking' => $booking
         ]);
     }
 
@@ -106,9 +144,19 @@ class BookingController extends AbstractController
         return $this->render('booking/edit.html.twig', [
             'booking' => $booking,
             'form' => $form->createView(),
-            'form2' => $form2->createView(),
+            'form2' => $form2->createView()
         ]);
     }
+
+
+
+    /**
+     * @Route("/blabla", name="blabla")
+     */
+    public function blabla(){
+        return $this->render('booking/blabla.html.twig');
+    }
+
 
     /**
      * @Route("/{id}", name="booking_delete", methods={"DELETE"})

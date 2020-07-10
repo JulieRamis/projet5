@@ -3,14 +3,21 @@
 
 {% block body %}
 
+    <a href="{{ path('booking_index') }}">
+        <button type="submit" class="btn btn-warning">Liste des repas</button>
+    </a>
     <a href="{{ path('booking_new') }}">
-        <button type="submit" class="btn btn-outline-info col-4 ok-btn">Ajouter un nouveau plat </button></a>
-
+        <button type="submit" class="btn btn-warning">Ajouter un nouveau plat </button>
+    </a>
+    <a href="{{ path('home') }}">
+        <button type="submit" class="btn btn-warning">Retour à l'accueil</button>
+    </a>
 
     <div id="calendar-holder"></div>
-{% endblock %}
 
 {% block stylesheets %}
+{% endblock %}
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
@@ -44,9 +51,9 @@
                 plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
                 locale: 'fr', // https://fullcalendar.io/docs/plugin-index
                 header: {
-                    left: 'prev,next today',
+                    left: '',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,list',
+                    right: 'prev,next today',
                 },
                 buttonText: {
                     today: 'aujourd\'hui',

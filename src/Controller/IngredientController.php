@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\IngredientMenuRepository;
 
 /**
  * @Route("/ingredient")
@@ -21,7 +22,7 @@ class IngredientController extends AbstractController
     public function index(IngredientRepository $ingredientRepository): Response
     {
         return $this->render('ingredient/index.html.twig', [
-            'ingredients' => $ingredientRepository->findAll(),
+            'ingredients' => $ingredientRepository->findAll()
         ]);
     }
 

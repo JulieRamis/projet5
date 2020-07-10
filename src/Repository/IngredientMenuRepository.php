@@ -19,6 +19,21 @@ class IngredientMenuRepository extends ServiceEntityRepository
         parent::__construct($registry, IngredientMenu::class);
     }
 
+ //   /**
+    //  * @return IngredientMenu[] Returns an array of IngredientMenu objects
+    //  */
+/*
+    public function listIngredient($bookingId)
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.menu = :booking_id')
+            ->setParameter('booking_id', $bookingId)
+            ->orderBy('i.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }*/
+
     // /**
     //  * @return IngredientMenu[] Returns an array of IngredientMenu objects
     //  */
@@ -35,6 +50,7 @@ class IngredientMenuRepository extends ServiceEntityRepository
         ;
     }
     */
+
 
     /*
     public function findOneBySomeField($value): ?IngredientMenu

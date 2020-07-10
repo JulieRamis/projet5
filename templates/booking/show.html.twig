@@ -1,46 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Booking{% endblock %}
+{% block title %}Repas{% endblock %}
 
 {% block body %}
-    <h1>Booking</h1>
+    <div class="content">
+        {% include 'nav.html.twig' %}
+        <h1>{{ booking.title }}</h1>
+        <p>Pour le : {{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</p>
 
-    <table class="table">
-        <tbody>
+        <h2>Ingrédients :</h2>
+        <table class="table table-bordered">
+            <thead>
             <tr>
-                <th>Date</th>
-                <td>{{ booking.beginAt ? booking.beginAt|date('d-m') : '' }}</td>
+                <th>Nom</th>
+                <th>Quantité</th>
             </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ booking.title }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Quantité</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for ingredient in booking.ingredientMenus %}
-            <tr>
-                <td>{{ ingredient.ingredient.name }}</td>
-                <td>{{ ingredient.quantity }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for ingredient in booking.ingredientMenus %}
+                <tr>
+                    <td>{{ ingredient.ingredient.name }}</td>
+                    <td>{{ ingredient.quantity }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div>
 
-    <a href="{{ path('booking_index') }}">Retour</a>
+        </div>
 
-    <a href="{{ path('booking_edit', {'id': booking.id}) }}">Editer</a>
+        <a href="{{ path('booking_index') }}">Retour</a>
 
-    {{ include('booking/_delete_form.html.twig') }}
+        <a href="{{ path('booking_edit', {'id': booking.id}) }}">Editer/Ajouter des ingrédients</a>
+
+        {{ include('booking/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
