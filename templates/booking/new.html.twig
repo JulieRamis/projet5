@@ -4,10 +4,11 @@
 
 {% block body %}
     <h1>Create new Booking</h1>
+    <div class="content">
+        {{ include('booking/_form.html.twig') }}
+        <a href="{{ path('booking_new') }}">Create new booking</a>
 
-    {{ include('booking/_form.html.twig') }}
-    <a href="{{ path('booking_new') }}">Create new booking</a>
 
-
-    <a href="{{ path('booking_index') }}">back to list</a>
+        <a href="{{ path('booking_index') }}">back to list</a>
+    </div>
 {% endblock %}

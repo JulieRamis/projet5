@@ -19,6 +19,18 @@ class BookingRepository extends ServiceEntityRepository
         parent::__construct($registry, Booking::class);
     }
 
+    public function findIngredientByUser($user)
+    {
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.ingredientMenus', 'im')->addSelect('im')
+            ->leftJoin('m.user', 'u')->addSelect('u')
+            ->where('m.user=:user')->setParameter('user', $user)
+            ->leftJoin('im.ingredient', 'i')->addSelect('i')
+            ->select('i.name, SUM(im.quantity) AS quantity_sum')
+            ->groupBy('i.name')
+            ->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Booking[] Returns an array of Booking objects
     //  */

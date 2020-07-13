@@ -33,42 +33,20 @@ class BookingController extends AbstractController
     public function index(BookingRepository $bookingRepository): Response
     {
         $user = $this->getUser();
-        $user_menus = $this->getDoctrine()->getRepository(Booking::class)->findBy(['user' => $user]);
-        $ingredientsMenu = [];
-
-
-        foreach ($user_menus as $user_menu) {
-            $menuIngredients = $user_menu->getIngredientMenus();
-            foreach ($menuIngredients as $menuIngredient) {
-                $ingredientsMenu[] = $menuIngredient;
-            }
-        }
-       // dd($ingredientsMenu);
         return $this->render('booking/index.html.twig', [
-            'bookings' => $bookingRepository->findByUser($user),
-            'ingredientMenu' => $ingredientsMenu
+            'bookings' => $bookingRepository->findByUser($user)
         ]);
     }
 
     /**
      * @Route("/list", name="shopping_list")
      */
-    public function shoppingList(): Response
+    public function shoppingList(BookingRepository $bookingRepository): Response
     {
         $user = $this->getUser();
-          $user_menus = $this->getDoctrine()->getRepository(Booking::class)->findBy(['user' => $user]);
-          $ingredientsMenu = [];
 
-
-          foreach ($user_menus as $user_menu) {
-              $menuIngredients = $user_menu->getIngredientMenus();
-              foreach ($menuIngredients as $menuIngredient) {
-                  $ingredientsMenu[] = $menuIngredient;
-              }
-          }
-        // dd($ingredientsMenu);
         return $this->render('booking/list.html.twig', [
-                'ingredientMenu' => $ingredientsMenu
+                'ingredients' => $bookingRepository->findIngredientByUser($user),
             ]
         );
     }
@@ -146,15 +124,6 @@ class BookingController extends AbstractController
             'form' => $form->createView(),
             'form2' => $form2->createView()
         ]);
-    }
-
-
-
-    /**
-     * @Route("/blabla", name="blabla")
-     */
-    public function blabla(){
-        return $this->render('booking/blabla.html.twig');
     }
 
 

@@ -8,13 +8,13 @@
     <h1>Ma liste de courses</h1>
     <table class="table">
         <tbody>
-        {% for ingredientMenus in ingredientMenu %}
-            <tr>
-                <td>{{ ingredientMenus.ingredient }}</td>
-                <td>{{ ingredientMenus.quantity }}</td>
-            </tr>
+            {% for ingredient in ingredients  %}
+                <tr>
+                    <td>{{ ingredient.name }}</td>
+                    <td>{{ ingredient.quantity_sum }}</td>
+                </tr>
+            {% endfor %}
 
-        {% endfor %}
         </tbody>
     </table>
     </div>
