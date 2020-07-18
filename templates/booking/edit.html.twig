@@ -24,6 +24,7 @@
                     <tr>
                         <td class="td-ingredient">{{ ingredient.ingredient.name }}</td>
                         <td class="td-ingredient">{{ ingredient.quantity }}</td>
+                        <td>{{ include('ingredient/_delete_ingredient.html.twig', {'ingredient_id' : ingredient.ingredient.id, 'booking_id' : booking.id}) }}</td>
                     </tr>
                 {% else %}
                     <tr>

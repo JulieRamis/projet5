@@ -83,11 +83,11 @@ class IngredientController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+*/
     /**
      * @Route("/{id}", name="ingredient_delete", methods={"DELETE"})
      */
-/*
+
     public function delete(Request $request, Ingredient $ingredient): Response
     {
         if ($this->isCsrfTokenValid('delete'.$ingredient->getId(), $request->request->get('_token'))) {
@@ -96,6 +96,6 @@ class IngredientController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('ingredient_index');
-    }*/
+        return $this->redirectToRoute('booking_edit', ['id' => $request->query->get('booking_id')]);
+    }
 }

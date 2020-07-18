@@ -26,7 +26,7 @@ class Ingredient
 
 
     /**
-     * @ORM\OneToMany(targetEntity=IngredientMenu::class, mappedBy="ingredient")
+     * @ORM\OneToMany(targetEntity=IngredientMenu::class, mappedBy="ingredient", cascade={"remove"})
      */
     private $ingredientMenus;
 
