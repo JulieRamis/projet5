@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+    <h1>Profil</h1>
+    {% for message in app.flashes('error') %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    <div class="content">
+        {% include 'nav.html.twig' %}
+        <h3>Mes informations</h3>
+        <form method="post">
+            <div>
+                <label for="pass">Mot de passe</label>
+                <input type="password" id="pass" name="pass">
+            </div>
+            <div>
+                <label for="pass2">Confirmer le mot de passe</label>
+                <input type="password" id="pass2" name="pass2">
+            </div>
+            <button>Valider</button>
+        </form>
+
+    </div>
+
+{% endblock %}

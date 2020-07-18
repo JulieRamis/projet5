@@ -14,11 +14,13 @@ use App\Repository\IngredientMenuRepository;
 /**
  * @Route("/ingredient")
  */
+
 class IngredientController extends AbstractController
-{
+{/*
     /**
      * @Route("/", name="ingredient_index", methods={"GET"})
      */
+/*
     public function index(IngredientRepository $ingredientRepository): Response
     {
         return $this->render('ingredient/index.html.twig', [
@@ -29,6 +31,7 @@ class IngredientController extends AbstractController
     /**
      * @Route("/new", name="ingredient_new", methods={"GET","POST"})
      */
+/*
     public function new(Request $request): Response
     {
         $ingredient = new Ingredient();
@@ -52,6 +55,7 @@ class IngredientController extends AbstractController
     /**
      * @Route("/{id}", name="ingredient_show", methods={"GET"})
      */
+/*
     public function show(Ingredient $ingredient): Response
     {
         return $this->render('ingredient/show.html.twig', [
@@ -62,6 +66,7 @@ class IngredientController extends AbstractController
     /**
      * @Route("/{id}/edit", name="ingredient_edit", methods={"GET","POST"})
      */
+/*
     public function edit(Request $request, Ingredient $ingredient): Response
     {
         $form = $this->createForm(IngredientType::class, $ingredient);
@@ -82,6 +87,7 @@ class IngredientController extends AbstractController
     /**
      * @Route("/{id}", name="ingredient_delete", methods={"DELETE"})
      */
+/*
     public function delete(Request $request, Ingredient $ingredient): Response
     {
         if ($this->isCsrfTokenValid('delete'.$ingredient->getId(), $request->request->get('_token'))) {
@@ -91,5 +97,5 @@ class IngredientController extends AbstractController
         }
 
         return $this->redirectToRoute('ingredient_index');
-    }
+    }*/
 }

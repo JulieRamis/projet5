@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
-use App\Entity\Ingredient;
 use App\Entity\IngredientMenu;
 use App\Form\BookingType;
+use App\Form\BookingDateType;
 use App\Form\IngredientMenuType;
 use App\Repository\BookingRepository;
-use App\Repository\IngredientMenuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/booking")
@@ -20,6 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/calendar", name="booking_calendar", methods={"GET"})
      */
     public function calendar(): Response
@@ -28,6 +30,7 @@ class BookingController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="booking_index", methods={"GET"})
      */
     public function index(BookingRepository $bookingRepository): Response
@@ -39,19 +42,30 @@ class BookingController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/list", name="shopping_list")
      */
-    public function shoppingList(BookingRepository $bookingRepository): Response
+    public function shoppingList(BookingRepository $bookingRepository, Request $request): Response
     {
         $user = $this->getUser();
+        $form = $this->createForm(BookingDateType::class);
+        $form->handleRequest($request);
+        $beginAt = $form->get('beginAt')->getData();
+        $endAt = $form->get('endAt')->getData();
+
+
 
         return $this->render('booking/list.html.twig', [
-                'ingredients' => $bookingRepository->findIngredientByUser($user),
+                'beginAt' => $beginAt,
+                'endAt' => $endAt,
+                'ingredients' => $bookingRepository->findIngredientByUser($user, $beginAt, $endAt),
+                'form' => $form->createView()
             ]
         );
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/new", name="booking_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -80,11 +94,16 @@ class BookingController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="booking_show", methods={"GET"})
      */
     public function show(Booking $booking): Response
     {
-
+        $user=$this->getUser();
+        $userMenu=$booking->getUser();
+        if($user!==$userMenu){
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('booking/show.html.twig', [
             'booking' => $booking
@@ -92,12 +111,18 @@ class BookingController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="booking_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Booking $booking): Response
     {
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
+        $user=$this->getUser();
+        $userMenu=$booking->getUser();
+        if($user!==$userMenu){
+            return $this->redirectToRoute('home');
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -128,6 +153,7 @@ class BookingController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="booking_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Booking $booking): Response

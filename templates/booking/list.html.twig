@@ -3,10 +3,59 @@
 {% block title %}Ma liste de courses{% endblock %}
 
 {% block body %}
-    <div class="content">
+    <div class="content panier">
         {% include 'nav.html.twig' %}
-    <h1>Ma liste de courses</h1>
+    <h1 class="title-list">Ma liste de courses</h1>
+    <div class="form-group">
+        <div class="container ">
     <table class="table">
+
+        {{ form_start(form) }}
+            <div class="container">
+                <fieldset>
+                    <div class="form-group date-list">
+                        <label for="dtp_input1" class="col-md-2 control-label txt-wht">Pour le :</label>
+
+                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input1">
+                            {{ form_widget(form.beginAt, {'attr': {'class': 'form-control'}}) }}
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+
+                        <label for="dtp_input1" class="col-md-2 control-label txt-wht">Jusqu'au :</label>
+
+                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input1">
+                            {{ form_widget(form.endAt, {'attr': {'class': 'form-control'}}) }}
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <button class="btn btn-warning save">{{ button_label|default('Valider') }}</button>
+                    </div>
+                </fieldset>
+
+
+                <script type="text/javascript">
+
+
+                    $('.form_date').datetimepicker({
+                        language:  'fr',
+                        weekStart: 1,
+                        todayBtn:  1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        minView: 2,
+                        forceParse: 0,
+                        format: 'yyyy-mm-dd'
+                    });
+
+
+                </script>
+                <br />
+            </div>
+
+        {{ form_end(form) }}
+
         <tbody>
             {% for ingredient in ingredients  %}
                 <tr>

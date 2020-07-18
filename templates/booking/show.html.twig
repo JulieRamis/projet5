@@ -3,25 +3,26 @@
 {% block title %}Repas{% endblock %}
 
 {% block body %}
-    <div class="content">
+    <div class="content show-page">
         {% include 'nav.html.twig' %}
+        <div class="container zone-1-show">
+        <h1 class="txt-wht title">{{ booking.title }}</h1>
+        <p class="begin txt-wht">Pour le : {{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</p>
+        </div>
         <div class="container">
-        <h1>{{ booking.title }}</h1>
-        <p>Pour le : {{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</p>
-
-        <h2>Ingrédients :</h2>
+        <h2 class="txt-wht">Ingrédients :</h2>
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Nom</th>
-                <th>Quantité</th>
+                <th class="txt-wht">Nom</th>
+                <th class="txt-wht">Quantité</th>
             </tr>
             </thead>
             <tbody>
             {% for ingredient in booking.ingredientMenus %}
                 <tr>
-                    <td>{{ ingredient.ingredient.name }}</td>
-                    <td>{{ ingredient.quantity }}</td>
+                    <td class="td-ingredient">{{ ingredient.ingredient.name }}</td>
+                    <td class="td-ingredient">{{ ingredient.quantity }}</td>
                 </tr>
             {% else %}
                 <tr>
@@ -34,11 +35,10 @@
 
         </div>
 
-        <a href="{{ path('booking_index') }}">Retour</a>
+            <a href="{{ path('booking_index') }}"><button class="btn btn-warning">Retour</button></a>
 
-        <a href="{{ path('booking_edit', {'id': booking.id}) }}">Editer/Ajouter des ingrédients</a>
+            <a href="{{ path('booking_edit', {'id': booking.id}) }}"><button class="btn btn-warning">Editer/Ajouter des ingrédients</button></a>
 
-        {{ include('booking/_delete_form.html.twig') }}
         </div>
     </div>
 {% endblock %}

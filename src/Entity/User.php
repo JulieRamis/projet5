@@ -51,7 +51,7 @@ class User implements UserInterface
     public $confirm_password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user", cascade={"remove"})
      */
     private $bookings;
 

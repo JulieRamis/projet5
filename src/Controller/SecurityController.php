@@ -3,16 +3,19 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
 use App\Form\EditPassType;
-use Symfony\Component\HttpFoundation\Request;
+use App\Form\EditProfileType;
+use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use App\Entity\User;
-use App\Form\RegistrationType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class SecurityController extends AbstractController
 {
@@ -74,6 +77,80 @@ class SecurityController extends AbstractController
         return $this->render('profile.html.twig', [
             'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("security/editprofil", name="edit_profile")
+     */
+    public function editProfile(Request $request)
+    {
+        $user = $this->getUser();
+        $formProfile = $this->createForm(EditProfileType::class, $user);
+
+        $formProfile->handleRequest($request);
+
+        if($formProfile->isSubmitted() && $formProfile->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('message', 'Profil mis à jour');
+
+            return $this->redirectToRoute('profile');
+        }
+
+        return $this->render('security/editprofile.html.twig', [
+            'form' => $formProfile->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("security/editpass", name="edit_pass")
+     */
+    public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        if($request->isMethod('POST')){
+            $em = $this->getDoctrine()->getManager();
+
+            $user = $this->getUser();
+
+            if($request->get('pass') == $request->request->get('pass2')){
+
+                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
+                $em ->flush();
+                $this->addFlash('message', 'mot de passe bien mis à jour');
+
+                return $this->redirectToRoute('profile');
+            }else{
+                $this->addFlash('error', 'Les mots de passe ne sont pas identiques');
+            }
+        }
+        return $this->render('security/editpass.html.twig', [
+        ]);
+    }
+
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("security/deleteuser/{id}", name="delete_user")
+     */
+    public function deleteUser(User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $currentUser=$this->getUser();
+        if($user!==$currentUser) {
+            return $this->redirectToRoute('home');
+        }
+        //$user = $em->getRepository(User::class)->find($id);
+
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
+     /*   return $this->render('delete_user', [
+            'id' => $user->getId()
+        ]);*/
+
     }
 
 }

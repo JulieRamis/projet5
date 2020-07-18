@@ -18,7 +18,7 @@ class IngredientMenu
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Ingredient::class, inversedBy="ingredientMenus", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Ingredient::class, inversedBy="ingredientMenus", cascade={"persist", "remove"})
      */
     private $ingredient;
 

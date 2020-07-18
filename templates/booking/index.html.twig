@@ -6,12 +6,12 @@
     <h1>Liste des repas</h1>
 
 
-    <div class="content">
+    <div class="content list">
         {% include 'nav.html.twig' %}
+        <div class="container">
         <table class="table">
             <thead>
             <tr>
-                <th>N°</th>
                 <th>Début</th>
                 <th>Fin</th>
                 <th>Plat</th>
@@ -21,13 +21,12 @@
             <tbody>
             {% for booking in bookings %}
                 <tr>
-                    <td>{{ booking.id }}</td>
-                    <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d') : '' }}</td>
-                    <td>{{ booking.endAt ? booking.endAt|date('Y-m-d') : '' }}</td>
-                    <td>{{ booking.title }}</td>
-                    <td>
-                        <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>
-                        <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
+                    <td class="td-ingredient td-list">{{ booking.beginAt ? booking.beginAt|date('Y-m-d') : '' }}</td>
+                    <td class="td-ingredient td-list">{{ booking.endAt ? booking.endAt|date('Y-m-d') : '' }}</td>
+                    <td class="td-ingredient td-list">{{ booking.title }}</td>
+                    <td class="td-ingredient">
+                        <a href="{{ path('booking_show', {'id': booking.id}) }}"><button class="btn btn-warning">Voir</button></a>
+                        <a href="{{ path('booking_edit', {'id': booking.id}) }}"><button class="btn btn-warning">Editer/Ajouter des ingrédients</button></a>
                     </td>
                 </tr>
             {% else %}
@@ -38,7 +37,9 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a href="{{ path('booking_new') }}">Create new</a>
+            <a href="{{ path('booking_new') }}">
+                <button type="submit" class="btn btn-warning">Ajouter un nouveau plat </button>
+            </a>
+        </div>
     </div>
 {% endblock %}

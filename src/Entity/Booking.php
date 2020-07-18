@@ -41,7 +41,7 @@ class Booking
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=IngredientMenu::class, mappedBy="menu")
+     * @ORM\OneToMany(targetEntity=IngredientMenu::class, mappedBy="menu", cascade={"remove"})
      */
     private $ingredientMenus;
 

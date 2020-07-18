@@ -4,7 +4,6 @@ body {
     border-radius: 10px;
     padding: 150px;
 }
-
 body:before, body:after {
     content: "";
     position: fixed;
@@ -14,36 +13,63 @@ body:before, body:after {
     right: 0;
     height: 150px;
 }
-
 body:before {
     top: 0;
 }
-
 body:after {
     bottom: 0;
 }
-
 .content {
-    background-color: rgba(255, 221, 173, 0.7);
     box-shadow: 0px 0px 8px 5px #222222;
     overflow: scroll;
     border-radius: 10px;
-    padding-bottom: 20px;
 }
-
 .content::-webkit-scrollbar {
     display: none;
 }
-
+.edit{
+    background: url("../img/edit.png") no-repeat;
+    background-size: cover;
+}
+.show-page{
+    background: url("../img/show.png") no-repeat;
+    background-size: cover;
+}
+.list{
+    background: url("../img/list.png") no-repeat;
+    background-size: cover;
+}
+.panier{
+    background: url("../img/panier.png") no-repeat;
+    background-size: cover;
+}
+.new{
+    background: url("../img/new.png") no-repeat;
+    background-size: cover;
+}
 table {
     border-collapse: collapse;
 }
-
-ul {
+.td-list{
+    vertical-align: middle!important;
+}
+.zone-1-show{
+     margin-bottom: 150px;
+     margin-top: 50px;
+ }
+.txt-wht{
+    color: white;
+}
+.title, .begin, .title-list{
+    text-align: center;
+}
+ul{
     width: 100%;
     margin: 20px;
 }
-
+.td-ingredient{
+    background-color: rgba(225, 225, 225, 0.7);
+}
 img {
     position: relative;
 }
@@ -62,7 +88,6 @@ img {
     background-color: #FE9806;
 
 }
-
 .navbar a {
     color: black;
     margin-right: 20px;
@@ -102,6 +127,10 @@ form div{
 }
 .delete{
     margin-top: 50px;
+    margin-bottom: 50px;
+}
+.btn-back{
+    margin: 15px;
 }
 th {
     background-color: #01AAAD;
@@ -144,6 +173,10 @@ th {
     width: 120px;
     text-align: center;
     margin: 15px;
+}
+.date-list{
+    display: flex;
+    flex-direction: column;
 }
 @media screen and (max-width: 768px) {
     body {
