@@ -17,6 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use function Sodium\add;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class SecurityController extends AbstractController
@@ -128,7 +129,7 @@ class SecurityController extends AbstractController
 
                     return $this->redirectToRoute('profile');
                 } else {
-                    $this->addFlash('error', 'test');
+                    $this->addFlash('error', 'Le mot de passe doit contenir au moins 8 caractères');
                 }
             } else {
                 $this->addFlash('error', 'Les mots de passe ne sont pas identiques');
@@ -150,15 +151,10 @@ class SecurityController extends AbstractController
         if ($user !== $currentUser) {
             return $this->redirectToRoute('home');
         }
-        //$user = $em->getRepository(User::class)->find($id);
-
         $em->remove($user);
         $em->flush();
 
         return $this->redirectToRoute('home');
-        /*   return $this->render('delete_user', [
-               'id' => $user->getId()
-           ]);*/
 
     }
 
