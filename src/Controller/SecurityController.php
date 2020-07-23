@@ -8,6 +8,7 @@ use App\Form\EditPassType;
 use App\Form\EditProfileType;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use function Sodium\add;
 
 
 class SecurityController extends AbstractController
@@ -22,14 +24,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="security_registration")
      */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    {
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
 
             $user->setPassword($hash);
@@ -43,6 +46,7 @@ class SecurityController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -89,7 +93,7 @@ class SecurityController extends AbstractController
 
         $formProfile->handleRequest($request);
 
-        if($formProfile->isSubmitted() && $formProfile->isValid()){
+        if ($formProfile->isSubmitted() && $formProfile->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -109,19 +113,24 @@ class SecurityController extends AbstractController
      */
     public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        if($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
             $user = $this->getUser();
+            $password = $request->get('pass');
 
-            if($request->get('pass') == $request->request->get('pass2')){
+            if ($password == $request->request->get('pass2')) {
+                if (strlen($password >= 8)) {
 
-                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
-                $em ->flush();
-                $this->addFlash('message', 'mot de passe bien mis à jour');
+                    $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
+                    $em->flush();
+                    $this->addFlash('message', 'mot de passe bien mis à jour');
 
-                return $this->redirectToRoute('profile');
-            }else{
+                    return $this->redirectToRoute('profile');
+                } else {
+                    $this->addFlash('error', 'test');
+                }
+            } else {
                 $this->addFlash('error', 'Les mots de passe ne sont pas identiques');
             }
         }
@@ -137,8 +146,8 @@ class SecurityController extends AbstractController
     public function deleteUser(User $user)
     {
         $em = $this->getDoctrine()->getManager();
-        $currentUser=$this->getUser();
-        if($user!==$currentUser) {
+        $currentUser = $this->getUser();
+        if ($user !== $currentUser) {
             return $this->redirectToRoute('home');
         }
         //$user = $em->getRepository(User::class)->find($id);
@@ -147,9 +156,9 @@ class SecurityController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('home');
-     /*   return $this->render('delete_user', [
-            'id' => $user->getId()
-        ]);*/
+        /*   return $this->render('delete_user', [
+               'id' => $user->getId()
+           ]);*/
 
     }
 

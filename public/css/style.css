@@ -35,23 +35,54 @@ body:after {
     background: url("../img/show.png") no-repeat;
     background-size: cover;
 }
-.list{
-    background: url("../img/list.png") no-repeat;
+.profil{
+    background: url("../img/profil.png") no-repeat;
     background-size: cover;
 }
+.home{
+    background: url("../img/home.png") no-repeat;
+    background-size: cover;
+}
+.list{
+     background: url("../img/list.png") no-repeat;
+     background-size: cover;
+ }
 .panier{
     background: url("../img/panier.png") no-repeat;
     background-size: cover;
 }
-.new{
+.new-page{
     background: url("../img/new.png") no-repeat;
     background-size: cover;
+}
+.profil h2{
+    margin: 60px;
+    text-align: center;
+}
+.info-profil{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(225, 225, 225, 0.5);
+    margin-bottom: 30px;
+}
+.info-profil h3{
+    font-weight: bold;
+    margin-top: 30px;
+}
+.info-profil h4{
+    text-decoration: underline;
+}
+.index-booking{
+    margin-top: 100px;
 }
 table {
     border-collapse: collapse;
 }
 .td-list{
     vertical-align: middle!important;
+}
+.td-delete{
+    width: 20px;
 }
 .zone-1-show{
      margin-bottom: 150px;
@@ -73,20 +104,17 @@ ul{
 img {
     position: relative;
 }
-
 .carousel-caption p {
     background-color: rgba(0, 0, 0, .4);
     border-radius: 5px;
     padding: 10px;
 }
-
 .navbar {
     z-index: 1;
     display: flex;
     list-style: none;
     color: black;
     background-color: #FE9806;
-
 }
 .navbar a {
     color: black;
@@ -98,8 +126,6 @@ img {
 .buttons-zone {
     display: flex;
     align-items: center;
-}
-#home-btn{
     margin: 100px;
 }
 input{
@@ -114,7 +140,6 @@ label{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
 }
 form div{
     display: flex;
@@ -125,38 +150,42 @@ form div{
     margin-bottom: 10px;
     justify-content: center;
 }
-.delete{
-    margin-top: 50px;
+.btn-margin{
     margin-bottom: 50px;
 }
 .btn-back{
     margin: 15px;
 }
+.btn-home{
+    margin-right: 20px;
+}
 th {
     background-color: #01AAAD;
 }
-
 .zone-calendar {
     display: flex;
     justify-content: center;
 }
-
 #second-week, #third-week, #fourth-week {
     visibility: hidden;
 }
-
 #calendar {
     margin-top: 20px;
     width: 80%;
 }
-
 .carousel-control-next-icon, .carousel-control-prev-icon {
     filter: invert(100%);
 }
 
-.description {
-    text-align: center;
+.description{
+    border-radius: 20px;
     margin-top: 100px;
+    background-color: rgba(225, 225, 225, 0.7);
+}
+.zone-home, .zone-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .fc td {
     background-color: rgba(254, 152, 6, 0.55);
@@ -164,10 +193,20 @@ th {
 .fc-time{
     display : none;
 }
-
+.fc-content {
+    background-color: #01AAAD;
+}
 .title-menu{
     width: 150px;
     margin: 15px;
+}
+.title-home{
+    margin-top: 100px;
+}
+.title-list, .title-home{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding:10px;
 }
 .save{
     width: 120px;
@@ -178,6 +217,9 @@ th {
     display: flex;
     flex-direction: column;
 }
+hr{
+    width: 100%;
+}
 @media screen and (max-width: 768px) {
     body {
         padding: 10px;
@@ -186,10 +228,22 @@ th {
     body:before, body:after {
         content: normal;
     }
-    .description{
-        margin-top: 10px;
-    }
-    #home-btn{
-        margin: 20px;
+
+    .description {
+        margin-top: 50px;
     }
 }
+@media screen and (max-width: 425px) {
+    .home{
+        background-image: url("../img/home-mini.png");
+    }
+    .btn-zone-calendar {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-calendar{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+

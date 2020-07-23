@@ -33,14 +33,6 @@ class BookingRepository extends ServiceEntityRepository
             ->getQuery()->getResult();
     }
 
-    public function getOneMenuByUser($id, $user){
-        return $this->createQueryBuilder('b')
-            ->where('b.id=:id')->setParameter('id',$id)
-            ->leftJoin('b.user','u')->addSelect('u')
-            ->where('b.user=:$user')->setParameters('user',$user)
-            ->getQuery()->getOneOrNullResult();
-    }
-
     // /**
     //  * @return Booking[] Returns an array of Booking objects
     //  */

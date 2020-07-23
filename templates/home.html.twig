@@ -4,45 +4,28 @@
 
 {% block body %}
 
-<h1>smart cooking</h1>
-    <div class="content">
-        {% include 'nav.html.twig' %}
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/01.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>Entrez vos repas et les ingrédients nécessaires à la date voulue</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/02.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>Votre liste de courses est générée.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/03.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>Retrouvez vos idées repas au quotidien en consultant votre calendrier.</p>
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        <p class="description">Organisez vos repas à l'aide d'un calendrier en ligne. </p>
-        <div class="buttons-zone" id="home-btn">
-            <a href="../inscription"><button type="button" class="btn btn-outline-info">Commencer</button></a>
-            <a href="../login"><button type="button" class="btn btn-outline-info">Se connecter</button></a>
-        </div>
-        <img src="img/02.jpg" class="d-block w-100" alt="...">
-
+    <div class="content home">
+    {% include 'nav.html.twig' %}
+    <div class="zone-home">
+        <h1 class="txt-wht title-home">smart cooking</h1>
+    <div class="description col-12 col-lg-7">
+        <p>Bienvenue sur <strong>smart cooking</strong>, le site pour organiser vos <strong>plannings repas</strong> et générer automatiquement votre <strong>liste de courses</strong> !</p>
+        <p>Adepte du <strong>batch cooking</strong> ou simplement organisé.e, vous trouverez les outils nécessaires pour
+            faciliter vos plannings</p>
+        <p>1) Créez un repas en indiquant sa date.</p>
+        <p>2) Ajoutez les ingrédients dont vous avez besoin.</p>
+        <p>3) Visualisez le tout sur votre calendrier.</p>
+        <p>4) Une fois toutes vos recettes du moment renseignées, générez votre liste de courses à la période souhaitée. Des ingrédients en double dans vos différentes recettes ? Pas de
+            soucis les quantités ont fusionné sur votre liste pour faciliter vos achats !</p>
+    </div>
+    <div class="buttons-zone">
+        <a href="../inscription">
+            <button type="button" class="btn btn-warning btn-home">Commencer</button>
+        </a>
+        <a href="../login">
+            <button type="button" class="btn btn-warning">Se connecter</button>
+        </a>
+    </div>
+    </div>
 
 {% endblock %}

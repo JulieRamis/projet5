@@ -37,7 +37,9 @@ class BookingController extends AbstractController
     {
         $user = $this->getUser();
         return $this->render('booking/index.html.twig', [
-            'bookings' => $bookingRepository->findByUser($user)
+            'bookings' => $bookingRepository->findByUser($user, [
+                'beginAt' => 'DESC'
+            ])
         ]);
     }
 

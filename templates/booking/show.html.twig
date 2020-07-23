@@ -26,7 +26,8 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">no records found</td>
+                    <td colspan="5"><a href="{{ path('booking_edit', {'id': booking.id}) }}"><button class="btn btn-warning">Aucun aliment, en ajouter ?</button></a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -35,9 +36,11 @@
 
         </div>
 
-            <a href="{{ path('booking_index') }}"><button class="btn btn-warning">Retour</button></a>
+            <a href="{{ path('booking_index') }}"><button class="btn btn-warning btn-margin">Retour</button></a>
 
-            <a href="{{ path('booking_edit', {'id': booking.id}) }}"><button class="btn btn-warning">Editer/Ajouter des ingrédients</button></a>
+            <a href="{{ path('booking_edit', {'id': booking.id}) }}"><button class="btn btn-warning btn-margin">Editer/Ajouter des ingrédients</button></a>
+            {{ include('booking/_delete_form.html.twig')}}
+
 
         </div>
     </div>

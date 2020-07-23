@@ -4,19 +4,23 @@
 
 {% block body %}
     <div class="content panier">
-        {% include 'nav.html.twig' %}
-    <h1 class="title-list">Ma liste de courses</h1>
+    {% include 'nav.html.twig' %}
+    <div class="zone-list">
+        <h1 class="title-list txt-wht">Ma liste de courses</h1>
+        <p class="title-list txt-wht">Choisissez la période souhaitée.</p>
+    </div>
     <div class="form-group">
-        <div class="container ">
-    <table class="table">
+    <div class="container ">
 
-        {{ form_start(form) }}
+        <table class="table">
+            {{ form_start(form) }}
             <div class="container">
                 <fieldset>
                     <div class="form-group date-list">
                         <label for="dtp_input1" class="col-md-2 control-label txt-wht">Pour le :</label>
 
-                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input1">
+                        <div class="input-group date form_date col-md-5" data-date="" data-date-format=""
+                             data-link-field="dtp_input1">
                             {{ form_widget(form.beginAt, {'attr': {'class': 'form-control'}}) }}
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -24,7 +28,8 @@
 
                         <label for="dtp_input1" class="col-md-2 control-label txt-wht">Jusqu'au :</label>
 
-                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input1">
+                        <div class="input-group date form_date col-md-5" data-date="" data-date-format=""
+                             data-link-field="dtp_input1">
                             {{ form_widget(form.endAt, {'attr': {'class': 'form-control'}}) }}
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -35,12 +40,10 @@
 
 
                 <script type="text/javascript">
-
-
                     $('.form_date').datetimepicker({
-                        language:  'fr',
+                        language: 'fr',
                         weekStart: 1,
-                        todayBtn:  1,
+                        todayBtn: 1,
                         autoclose: 1,
                         todayHighlight: 1,
                         startView: 2,
@@ -48,23 +51,20 @@
                         forceParse: 0,
                         format: 'yyyy-mm-dd'
                     });
-
-
                 </script>
-                <br />
             </div>
 
-        {{ form_end(form) }}
+            {{ form_end(form) }}
 
-        <tbody>
-            {% for ingredient in ingredients  %}
+            <tbody>
+            {% for ingredient in ingredients %}
                 <tr>
-                    <td>{{ ingredient.name }}</td>
-                    <td>{{ ingredient.quantity_sum }}</td>
+                    <td class="td-ingredient">{{ ingredient.name }}</td>
+                    <td class="td-ingredient">{{ ingredient.quantity_sum }}</td>
                 </tr>
             {% endfor %}
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
 {% endblock %}

@@ -2,21 +2,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <a href="{{ path('booking_index') }}">
-        <button type="submit" class="btn btn-warning">Liste des repas</button>
-    </a>
-    <a href="{{ path('booking_new') }}">
-        <button type="submit" class="btn btn-warning">Ajouter un nouveau plat </button>
-    </a>
-    <a href="{{ path('home') }}">
-        <button type="submit" class="btn btn-warning">Retour à l'accueil</button>
-    </a>
-
+    <div class="btn-zone-calendar">
+        <a href="{{ path('booking_index') }}">
+            <button type="submit" class="btn btn-warning">Liste des repas</button>
+        </a>
+        <a href="{{ path('booking_new') }}">
+            <button type="submit" class="btn btn-warning btn-calendar">Ajouter un nouveau plat</button>
+        </a>
+        <a href="{{ path('home') }}">
+            <button type="submit" class="btn btn-warning">Retour à l'accueil</button>
+        </a>
+    </div>
     <div id="calendar-holder"></div>
 
-{% block stylesheets %}
-{% endblock %}
+    {% block stylesheets %}
+    {% endblock %}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">

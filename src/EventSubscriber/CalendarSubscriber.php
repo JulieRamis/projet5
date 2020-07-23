@@ -26,6 +26,7 @@ class CalendarSubscriber implements EventSubscriberInterface
         $this->security=$security;
     }
 
+
     public static function getSubscribedEvents()
     {
         return [
@@ -69,10 +70,7 @@ class CalendarSubscriber implements EventSubscriberInterface
              * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
              */
 
-            $bookingEvent->setOptions([
-                'backgroundColor' => 'blue',
-                'borderColor' => 'white',
-            ]);
+
             $bookingEvent->addOption(
                 'url',
                 $this->router->generate('booking_show', [
@@ -80,8 +78,10 @@ class CalendarSubscriber implements EventSubscriberInterface
                 ])
             );
 
+
             // finally, add the event to the CalendarEvent to fill the calendar
             $calendar->addEvent($bookingEvent);
         }
+
     }
 }
