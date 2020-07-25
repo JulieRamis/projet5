@@ -74,6 +74,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/profil", name="profile")
      */
     public function profile()
@@ -85,6 +86,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     *  @IsGranted("ROLE_USER")
      * @Route("security/editprofil", name="edit_profile")
      */
     public function editProfile(Request $request)
@@ -110,6 +112,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     *  @IsGranted("ROLE_USER")
      * @Route("security/editpass", name="edit_pass")
      */
     public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -121,11 +124,11 @@ class SecurityController extends AbstractController
             $password = $request->get('pass');
 
             if ($password == $request->request->get('pass2')) {
-                if (strlen($password >= 8)) {
+                if (strlen($password) >= 8) {
 
                     $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
                     $em->flush();
-                    $this->addFlash('message', 'mot de passe bien mis à jour');
+                    $this->addFlash('message', 'Le mot de passe bien mis à jour');
 
                     return $this->redirectToRoute('profile');
                 } else {
@@ -151,6 +154,8 @@ class SecurityController extends AbstractController
         if ($user !== $currentUser) {
             return $this->redirectToRoute('home');
         }
+        $session = new Session();
+        $session->invalidate();
         $em->remove($user);
         $em->flush();
 

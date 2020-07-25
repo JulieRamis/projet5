@@ -30,7 +30,7 @@
                 <button class="btn btn-warning btn-margin">Modifier mon mot de passe</button>
             </a>
             <a href="{{ path('delete_user', {'id':user.id}) }}">
-                <button class="btn btn-danger btn-margin">Supprimer mon compte</button>
+                <button class="btn btn-danger btn-margin" onclick="return confirm('Êtes-vous sûr.e de vouloir supprimer votre compte ?');">Supprimer mon compte</button>
             </a>
         </div>
     </div>

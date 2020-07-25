@@ -1,5 +1,5 @@
 body {
-    background-image: url("../img/test.png");
+    background-image: url("../img/fond.png");
     background-attachment: fixed;
     border-radius: 10px;
     padding: 150px;
@@ -180,7 +180,11 @@ th {
 .description{
     border-radius: 20px;
     margin-top: 100px;
-    background-color: rgba(225, 225, 225, 0.7);
+    background-color: rgba(225, 225, 225, 0.8);
+    font-size: 15px;
+}
+strong{
+    color: #fa7921;
 }
 .zone-home, .zone-list{
     display: flex;
@@ -219,6 +223,12 @@ th {
 }
 hr{
     width: 100%;
+}
+#zone_meteo{
+    background-color: rgba(225, 225, 225, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    width: 150px;
 }
 @media screen and (max-width: 768px) {
     body {
