@@ -6,7 +6,6 @@ let ajax = new XMLHttpRequest();
 ajax.open("GET", urlApi, true);
 ajax.addEventListener("load", function(){
     let data=JSON.parse(ajax.responseText);
-    console.log(data);
     let temp = (data.main.temp-273.15).toFixed(2);
     zoneMeteo.innerHTML = "Météo : " + data.name + " "  + temp + "°";
 });

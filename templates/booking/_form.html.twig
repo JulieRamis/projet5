@@ -4,7 +4,7 @@
                 <fieldset>
                     <h2 class="txt-wht">{{booking.title}}</h2>
                     <div class="form-group">
-                        <label for="dtp_input1" class="col-md-2 control-label txt-wht">Pour le :</label>
+                        <label for="booking_beginAt" class="col-md-2 control-label txt-wht">Pour le :</label>
 
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input1">
                             {{ form_widget(form.beginAt, {'attr': {'class': 'form-control'}}) }}
@@ -12,7 +12,7 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
 
-                        <label for="dtp_input1" class="col-md-2 control-label txt-wht">Jusqu'au :</label>
+                        <label for="booking_endAt" class="col-md-2 control-label txt-wht">Jusqu'au :</label>
 
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input1">
                             {{ form_widget(form.endAt, {'attr': {'class': 'form-control'}}) }}
@@ -26,7 +26,7 @@
                 </fieldset>
 
 
-            <script type="text/javascript">
+            <script>
 
 
                     $('.form_date').datetimepicker({

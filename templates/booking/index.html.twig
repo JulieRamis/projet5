@@ -23,8 +23,8 @@
                     <td class="td-ingredient td-list">{{ booking.beginAt ? booking.beginAt|date('Y-m-d') : '' }}</td>
                     <td class="td-ingredient td-list">{{ booking.title }}</td>
                     <td class="td-ingredient">
-                        <a href="{{ path('booking_show', {'id': booking.id}) }}"><button class="btn btn-warning">Voir</button></a>
-                        <a href="{{ path('booking_edit', {'id': booking.id}) }}"><button class="btn btn-warning">Ajout ingrédients</button></a>
+                        <a href="{{ path('booking_show', {'id': booking.id}) }}" class="btn btn-warning">Voir</a>
+                        <a href="{{ path('booking_edit', {'id': booking.id}) }}" class="btn btn-warning">Ajout ingrédients</a>
                     </td>
                 </tr>
             {% else %}
@@ -34,9 +34,7 @@
             {% endfor %}
             </tbody>
         </table>
-            <a href="{{ path('booking_new') }}">
-                <button type="submit" class="btn btn-warning btn-margin">Ajouter un nouveau plat </button>
-            </a>
+            <a href="{{ path('booking_new') }}" class="btn btn-warning btn-margin">Ajouter un nouveau plat</a>
         </div>
     </div>
 {% endblock %}

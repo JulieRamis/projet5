@@ -1,17 +1,14 @@
-{# templates/booking/calendar.html.twig #}
 {% extends 'base.html.twig' %}
-
+{% block title %}Calendrier{% endblock %}
 {% block body %}
     <div class="btn-zone-calendar">
-        <a href="{{ path('booking_index') }}">
-            <button type="submit" class="btn btn-warning">Liste des repas</button>
-        </a>
-        <a href="{{ path('booking_new') }}">
-            <button type="submit" class="btn btn-warning btn-calendar">Ajouter un nouveau plat</button>
-        </a>
-        <a href="{{ path('home') }}">
-            <button type="submit" class="btn btn-warning">Retour à l'accueil</button>
-        </a>
+
+            <a href="{{ path('booking_index') }}" class="btn btn-warning">Liste des repas</a>
+
+            <a href="{{ path('booking_new') }}" class="btn btn-warning btn-calendar">Ajouter un nouveau plat</a>
+
+            <a href="{{ path('home') }}" class="btn btn-warning">Retour à l'accueil </a>
+
     </div>
     <div id="calendar-holder"></div>
 
@@ -29,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
 
-    <script type="text/javascript">
+    <script>
 
         document.addEventListener('DOMContentLoaded', () => {
             let calendarEl = document.getElementById('calendar-holder');

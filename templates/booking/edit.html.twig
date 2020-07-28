@@ -39,11 +39,11 @@
                     Ajouter un ingrédient
                 </button>
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                     aria-labelledby="add-ingredient" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title " id="exampleModalLongTitle">Ajouter un ingrédient</h5>
+                                <h5 class="modal-title " id="add-ingredient">Ajouter un ingrédient</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -51,11 +51,11 @@
                             <div class="modal-body">
                                 {{ form_start(form2) }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Ingrédient</label>
+                                    <label for="ingredient_menu_ingredient_name">Ingrédient</label>
                                     {{ form_widget(form2.ingredient, {'attr': {'class': ''}}) }}
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Quantité</label>
+                                    <label for="ingredient_menu_quantity">Quantité</label>
                                     {{ form_widget(form2.quantity, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <button type="submit" class="btn btn-warning">Enregistrer</button>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ path('booking_index') }}"> <button type="button" class="btn btn-warning btn-margin">Retour à la liste</button></a>
+                <a href="{{ path('booking_index') }}" class="btn btn-warning btn-margin">Retour à la liste</a>
             </div>
         </div>
     </div>

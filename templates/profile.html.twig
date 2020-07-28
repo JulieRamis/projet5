@@ -17,8 +17,8 @@
             <h4>Pseudo :</h4>
             <p>{{ app.user.name }}</p>
 
-            <a href="{{ path('edit_profile') }}">
-                <button class="btn btn-warning btn-margin"> Modifier mon pseudo</button>
+            <a href="{{ path('edit_profile') }}" class="btn btn-warning btn-margin">
+                Modifier mon pseudo
             </a>
             <h3>Contact</h3>
             <hr>
@@ -26,11 +26,13 @@
             <p>{{ app.user.email }}</p>
             <h3>Mot de passe :</h3>
             <hr>
-            <a href="{{ path('edit_pass') }}">
-                <button class="btn btn-warning btn-margin">Modifier mon mot de passe</button>
+            <a href="{{ path('edit_pass') }}" class="btn btn-warning btn-margin">
+                Modifier mon mot de passe
             </a>
-            <a href="{{ path('delete_user', {'id':user.id}) }}">
-                <button class="btn btn-danger btn-margin" onclick="return confirm('Êtes-vous sûr.e de vouloir supprimer votre compte ?');">Supprimer mon compte</button>
+            <h3>Suppression</h3>
+            <hr>
+            <a href="{{ path('delete_user', {'id':user.id}) }}" class="btn btn-danger btn-margin" onclick="return confirm('Êtes-vous sûr.e de vouloir supprimer votre compte ?');">
+                Supprimer mon compte
             </a>
         </div>
     </div>

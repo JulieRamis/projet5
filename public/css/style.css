@@ -60,8 +60,6 @@ body:after {
     text-align: center;
 }
 .info-profil{
-    display: flex;
-    flex-direction: column;
     background-color: rgba(225, 225, 225, 0.5);
     margin-bottom: 30px;
 }

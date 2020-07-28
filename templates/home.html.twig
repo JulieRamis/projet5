@@ -5,28 +5,32 @@
 {% block body %}
 
     <div class="content home">
-    {% include 'nav.html.twig' %}
-    <div class="zone-home">
-        <h1 class="txt-wht title-home">smart cooking</h1>
-    <div class="description col-12 col-lg-7">
-        <p>Bienvenue sur <strong>smart cooking</strong>, le site pour organiser vos <strong>plannings repas</strong> et générer automatiquement votre <strong>liste de courses</strong> !</p>
-        <p>Adepte du <strong>batch cooking</strong> ou simplement organisé.e, vous trouverez les outils nécessaires pour
-            faciliter vos plannings</p>
-        <p>1) Créez un repas en indiquant sa date.</p>
-        <p>2) Ajoutez les ingrédients dont vous avez besoin.</p>
-        <p>3) Visualisez le tout sur votre calendrier.</p>
-        <p>4) Une fois toutes vos recettes du moment renseignées, générez votre liste de courses à la période souhaitée. Des ingrédients en double dans vos différentes recettes ? Pas de
-            soucis les quantités ont fusionné sur votre liste pour faciliter vos achats !</p>
-    </div>
-    <div class="buttons-zone">
-        <a href="../inscription">
-            <button type="button" class="btn btn-warning btn-home">Commencer</button>
-        </a>
-        <a href="../login">
-            <button type="button" class="btn btn-warning">Se connecter</button>
-        </a>
-    </div>
-        <p id="zone_meteo"></p>
+        {% include 'nav.html.twig' %}
+        <div class="zone-home">
+            <h1 class="txt-wht title-home">smart cooking</h1>
+            <div class="description col-12 col-lg-7">
+                <p>Bienvenue sur <strong>smart cooking</strong>, le site pour organiser vos <strong>plannings
+                        repas</strong>
+                    et générer automatiquement votre <strong>liste de courses</strong> !</p>
+                <p>Adepte du <strong>batch cooking</strong> ou simplement organisé.e, vous trouverez les outils
+                    nécessaires
+                    pour
+                    faciliter vos plannings</p>
+                <p>1) Créez un repas en indiquant sa date.</p>
+                <p>2) Ajoutez les ingrédients dont vous avez besoin.</p>
+                <p>3) Visualisez le tout sur votre calendrier.</p>
+                <p>4) Une fois toutes vos recettes du moment renseignées, générez votre liste de courses à la période
+                    souhaitée. Des ingrédients en double dans vos différentes recettes ? Pas de
+                    soucis les quantités ont fusionné sur votre liste pour faciliter vos achats !</p>
+            </div>
+            <div class="buttons-zone">
+
+                <a href="../inscription" class="btn btn-warning btn-home">Commencer </a>
+                <a href="../login" class="btn btn-warning">Se connecter</a>
+
+            </div>
+            <p id="zone_meteo"></p>
+        </div>
     </div>
     <script src="../js/meteo.js"></script>
 {% endblock %}
