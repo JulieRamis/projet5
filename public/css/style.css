@@ -222,6 +222,10 @@ strong{
 hr{
     width: 100%;
 }
+#title-edit{
+    margin-top: 0;
+    text-align: center;
+}
 #zone_meteo{
     background-color: rgba(225, 225, 225, 0.8);
     padding: 10px;
